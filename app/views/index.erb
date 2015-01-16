@@ -1,0 +1,89 @@
+
+<div class="container">
+
+
+<table width ="800px" >
+<td>
+	<div class='bg'>
+		<% @games.each do |g| %>
+			<a href="/event/<%= g.id %>"><%= g.sport %> at <%= g.location %></a><br>
+		<% end %>
+	</div>
+</td>
+<td style="padding-top:0px;">
+<% if !@new_game.errors.empty? %>
+	<script>
+		$(document).ready(function(){
+		  $(".register_game_errors").show();
+		});
+	</script>
+	<div class='register_game_errors'>
+	<h4>Errors with Registering a Game</h4>
+	<% if !@new_game.errors[:sport].empty? %>
+			<p>Name <%= @new_game.errors[:sport].first %></p>
+		<% end %>
+		<% if !@new_game.errors[:location].empty? %>
+			<p>Email <%= @new_game.errors[:location].first %></p>
+		<% end %>
+		<% if !@new_game.errors[:date].empty? %>
+			<p>Password <%= @new_game.errors[:date].first %></p>
+	<% end %>
+	</div>
+<% end %>
+	<div class="bg">
+		<div class="create_event">
+		<h3>Register an Game</h3>
+			<form action='/create' method='POST'>
+				<select name="sport">
+				  <option value="Football">Football</option>
+				  <option value="Soccer">Soccer</option>
+				  <option value="Baseball">Baseball</option>
+				  <option value="Basketball">Basketball</option>
+				  <option value="Hockey">Hockey</option>
+				</select><br>
+				<input type='text' name='location' placeholder='Location' ><br>
+				<input type='date' name='date' ><br>
+				<input type='time' name='time'><br>
+				<button type='submit'>Submit</button>
+			</form>
+		</div>
+	</div>
+</td>
+<td>
+	<% if !current_user %>
+		<% if @signin_error %>
+			<script>
+				$(document).ready(function(){
+		  			$(".sign_in_error").show();
+				});
+			</script>
+			<div class='sign_in_error'>
+				<p>Either your email or password were incorrect, try again!</p>
+			</div>
+		<% end %>
+
+		<div class="bg">
+			<h3>Sign In</h3>
+			<form action='/sign_in' method='POST'>
+				<input type='text' name='email' placeholder='Email' ><br>
+				<input type='password' name='password' placeholder='Password' ><br>
+				<button type='submit'>Sign In</button>
+			</form>
+			<button class='signin_button'>Sign In with Facebook</button>
+		</div>
+	<% end %>
+</td>
+</table>
+
+
+<fb:login-button class='signin_button' scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+
+
+</div>
+
+
+<!-- # User can see a list of pick up games for specific sports
+# User can create pick up games for specific sports, at given locations
+# User can create an account -->

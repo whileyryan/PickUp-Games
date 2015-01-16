@@ -1,0 +1,96 @@
+
+
+<head>
+	<style type="text/css">
+	  html { height: 100% }
+	  body { height: 100%; margin: 0; padding: 0 }
+	  #map-canvas { height: 100% }
+	  .map {
+	  	margin-right: 300px;
+	  }
+	</style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLgd-WmH8OVkeSBdAsA96GguNdWh0eQ4">
+    </script>
+  	<!-- // <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> -->
+  	<script src="/js/games.js"></script>
+	<script src="/js/all_games_map.js"></script>
+  </head>
+
+<div class="container">
+	<table class='games_menu_bar' width="500px" height="25px" style='border-radius:3px;'>
+		<td>
+			<select name="sport" class="sport_options">
+				  <option value="Football">Football</option>
+				  <option value="Soccer">Soccer</option>
+				  <option value="Baseball">Baseball</option>
+				  <option value="Basketball">Basketball</option>
+				  <option value="Hockey">Hockey</option>
+			</select>
+			<input type='submit' class='submit_options' value='Submit!' >
+		</td>
+		<td>
+			<div class='weekdays'>
+				<button class='sunday'>S</button>
+				<button class='monday'>M</button>
+				<button class='tuesday'>T</button>
+				<button class='wednesday'>W</button>
+				<button class='thursday'>R</button>
+				<button class='friday'>F</button>
+				<button class='saturday'>S</button>
+			</div>
+		</td>
+		<td>
+			<button class='reset'>Reset</button>
+		</td>
+
+	</table>
+	<div class="games_left_bar">
+
+
+	<div class="all_games">
+			<% @sport.each do |g| %>
+				<a href="/event/<%= g.id %>">
+					<div class='single_game'>
+						<%= g.sport %><br><%= g.location %><br><%= g.weekday %> <%= g.month_day %>, <%= g.time %>:00
+					</div>
+				</a>
+			<% end %>
+	</div>
+	</div>
+
+	<div class="games_right_bar">
+		<div class="games_profile_information">
+			<% if current_user %>
+				<a href='/account'>Account</a><br>
+				<a href="/sign_out">Sign Out</a><br>
+			<% else %>
+				<h3>Sign In</h3>
+					<form action='/sign_in' method='POST'>
+						<input type='text' name='email' placeholder='Email' ><br>
+						<input type='password' name='password' placeholder='Password' ><br>
+						<button type='submit'>Sign In</button>
+					</form>
+				<a href='/sign_up'>Sign Up</a>
+			<% end %>
+			<a href='/'>Home</a>
+		</div>
+
+		<div class="games_register_game">
+		<button class="register_game">Register a Game</button>
+			<form action='/create' class="create_game_form" method='POST'>
+				<select name="sport">
+				  <option value="Football">Football</option>
+				  <option value="Soccer">Soccer</option>
+				  <option value="Baseball">Baseball</option>
+				  <option value="Basketball">Basketball</option>
+				  <option value="Hockey">Hockey</option>
+				</select>
+				<input type='text' name='location' placeholder='Location' >
+				<input type='date' name='date' >
+				<input type='time' name='time'><br>
+				<input type='submit' value='Submit!' >
+			</form>
+		</div>
+	</div>
+</div>

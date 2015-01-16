@@ -1,0 +1,53 @@
+<head>
+	<style type="text/css">
+	  html { height: 100% }
+	  body { height: 100%; margin: 0; padding: 0 }
+	  #map-canvas { height: 100% }
+	</style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLgd-WmH8OVkeSBdAsA96GguNdWh0eQ4">
+    </script>
+  	<!-- // <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> -->
+
+    <script src="/js/map.js"></script>
+  </head>
+
+
+<body>
+<div class="left-bar">
+	<div class="event_details">
+	<h3>Game Details</h3>
+		<div class="game_sport"><%= @event.sport %></div>
+		<div class="game_location"><%= @event.location %></div>
+		<div class="game_date"><%= @event.weekday %> <%= @event.month_day %> <%= @event.time %></div>
+	</div>
+
+	<div class="event_attendance">
+	<div class="att">
+		<%= @event.attendance %></div> attendee(s).
+		<% if current_user %>
+			<% if !@attendance_switch %>
+				<button type='text' class='attend' ident='<%= @event.id %>' name='attend'>Attend!</button> 
+				<button type='text' class='unattend' ident='<%= @event.id %>' name='unattend'>Unattend!</button> 
+			<% else %>
+				<button type='text' class='unattend' style='display:inline;' ident='<%= @event.id %>' name='unattend'>Unattend!</button> 
+			<% end %>
+		<% end %>
+	</div>
+	<% if !current_user %>
+		<div class='bg' style="margin-left:30px;">
+			<h3>Sign In</h3>
+				<form action='/sign_in' method='POST'>
+					<input type='text' name='email' placeholder='Email' ><br>
+					<input type='password' name='password' placeholder='Password' ><br>
+					<button type='submit'>Sign In</button>
+				</form>
+			<a href='/sign_up'>Sign Up</a>
+		</div>
+	<% end %>
+</div>
+
+	<div class='map'>
+		<div id="map-canvas"></div>
+	</div>
+  </body>

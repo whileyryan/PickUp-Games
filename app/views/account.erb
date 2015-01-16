@@ -1,0 +1,59 @@
+
+<div class="container">
+<div class="profile_content">
+	<h4>Hello <%= current_user.name %>!</h4>
+
+ 	<div class="games_attending">
+		<h3>Games Attending</h3>
+		<% if !GameUser.all.empty? %>
+			<% @game_attendance.each do |event| %>
+				<a href="/event/<%= event.id %>"><%= event.sport %> at <%= event.location %></a><br>
+			<% end %>
+		<% end %>
+	</div>
+	<button class='toggle_user_sports_choices'>Preferences</button><br />
+	<a href='/games'><button>See all Games</button></a>
+	<div class="create_event">
+		<button class='create_event_button'>Register a Game</button>
+		<div class="create_event_form">
+			<form action='/create' method='POST'>
+				<select name="sport">
+				  <option value="Football">Football</option>
+				  <option value="Soccer">Soccer</option>
+				  <option value="Baseball">Baseball</option>
+				  <option value="Basketball">Basketball</option>
+				  <option value="Hockey">Hockey</option>
+				</select><br>
+				<input type='text' name='location' placeholder='Location' ><br>
+				<input type='date' name='date' ><br>
+				<input type='time' name='time'><br>
+				<button type='submit'>Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div class='main_content'>
+	<div class="user_sports_choices">
+		<h3>Create a list of sports you would like to see game updates for!</h3>
+		<form action='/add_sport' method='POST'>
+			<% @sports.each do |sport| %>
+				<input type='checkbox' name='sport[<%=sport.sport%>]' value='<%= sport.id %>'><%= sport.sport %><br>
+				<input type='hidden' name='FUCKINGID' value='<%= current_user.id %>'>
+			<% end %>	
+			<input type='submit' value='Submit'>
+		</form>
+	</div>
+
+
+
+
+	<h3>Possible games of interest</h3>
+	<% if !@interested_sports.nil? %>
+		<% @interested_sports.each do |event| %>
+			<a href="/event/<%= event.id %>"><%= event.sport %> at <%= event.location %></a><br>
+		<% end %>
+	<% end %>
+</div>
+</div>

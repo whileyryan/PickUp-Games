@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/normalize.css">
+  
+  <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="/css/event.css">
+  <link rel="stylesheet" href="/css/account.css">
+  <link rel="stylesheet" href="/css/games.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+  <script src="/js/facebook.js"></script>
+
+
+  <title></title>
+</head>
+<div class='header'>
+<a href='/'>Home</a>
+<% if !current_user %>
+	<a href='/sign_up'>Sign Up</a>
+<% else %>
+	<a href='/account'>Account</a>
+  <a href='/sign_out'>Sign Out</a>
+<% end %>
+<a href='/games'>See all Games</a>
+<div class='search_bar'>
+	<form action='/search' method='post' >
+		<input type='text' name='search_item' class='search_item'>
+  </form>
+		<button class='submit_button'>Search</button>
+</div>
+</div>
+<body>
+  <div id="fb-root"></div>
+
+  <%= yield %>
+</body>
+</html>

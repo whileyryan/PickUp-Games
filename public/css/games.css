@@ -1,0 +1,106 @@
+.all_games {
+  width:450px;
+  float:left;
+}
+
+.all_games a {
+  text-decoration: none;
+}
+
+.single_game {
+  background-color: #fff;
+  border-radius: 8px;
+  opacity: 0.93;
+  padding-top: 0px;
+  padding: 15px;
+  margin: 10px;
+  margin-top: 10px;
+  border: 1px solid #122530;
+}
+
+.single_game a:hover {
+  border: 2px solid #122530;
+}
+
+.games_profile_information{
+  background-color: #fff;
+  border-radius: 8px;
+  opacity: 0.93;
+  padding-top: 0px;
+  padding: 15px;
+  margin: 10px;
+  margin-top: 30px;
+  border: 1px solid #122530;
+  width:250px;
+  float:right;
+}
+
+.games_register_game {
+  background-color: #fff;
+  border-radius: 8px;
+  opacity: 0.93;
+  padding-top: 0px;
+  padding: 15px;
+  margin: 10px;
+  margin-top: 30px;
+  border: 1px solid #122530;
+  width:250px;
+  float:right;
+}
+
+.games_register_game button {
+	border-radius: 3px;
+  background-color: #122530;
+	color: #fff;
+	border: none;
+}
+
+.create_game_form {
+	display: none;
+	margin-top: 10px;
+}
+
+.create_game_form select {
+	margin-bottom: 10px;
+}
+
+.games_right_bar {
+  float:right;
+  width: 300px;
+}
+
+.games_left_bar {
+  float: left;
+}
+
+.games_menu_bar {
+  background-color: #fff;
+  border-radius: 3px;
+  opacity: 0.93;
+  padding: 15px;
+  margin: 10px;
+  margin-top: 30px;
+  border: 1px solid #122530;
+}
+
+.games_menu_bar button {
+  border-radius: 3px;
+  background-color: #122530;
+  color: #fff;
+  border: none;
+}
+
+.games_menu_bar input {
+  border-radius: 3px;
+  background-color: #122530;
+  color: #fff;
+  border: none;
+}
+
+.weekdays button {
+  border-radius: 3px;
+  background-color: #122530;
+  color: #fff;
+  border: none;
+  height:25px;
+}

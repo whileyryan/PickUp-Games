@@ -1,0 +1,34 @@
+<div class='container'>
+<center>
+	<% if !@user.errors.empty? %>
+	<script>
+		$(document).ready(function(){
+		  $(".sign_up_errors").show();
+		});
+	</script>
+		<div class="sign_up_errors">
+			<H4><u>Sign up Errors</u></H4>
+			<% if !@user.errors[:name].empty? %>
+				<p>Name <%= @user.errors[:name].first %></p>
+			<% end %>
+			<% if !@user.errors[:email].empty? %>
+				<p>Email <%= @user.errors[:email].first %></p>
+			<% end %>
+			<% if !@user.errors[:password_hash].empty? %>
+				<p>Password <%= @user.errors[:password_hash].first %></p>
+			<% end %>
+		</div>
+	<% end %>
+	<div class='bg' style="width:230px; margin-top:50px; opacity:0.9;">
+		<h3>Create an Account</h3>
+		<form action='/sign_up' method='POST'>
+			<input type='text' name='name' placeholder='Name'><br>
+			<input type='text' name='email' placeholder='Email'><br>
+			<input type='password' name='password' placeholder='Password'><br>
+			<input type='submit' value='Submit'>
+		</form>
+			<button class='signup_button'>Sign Up with Facebook</button>
+
+	</div>
+</center>
+</div>
